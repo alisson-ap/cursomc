@@ -1,5 +1,6 @@
 package com.magalhaes.cursomc.domain.enums;
 
+//Criando um tipo Enum para o tipoCliente ter valores Fixos
 public enum TipoCliente {
 
 	PESSOAFISICA(1, "Pessoa Física"),

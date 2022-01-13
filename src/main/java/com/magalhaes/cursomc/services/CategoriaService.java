@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.magalhaes.cursomc.domain.Categoria;
 import com.magalhaes.cursomc.repositories.CategoriaRepository;
-
+//O Service vai usar uma instância do JPA e fazer os metódos para gerenciar o banco de dados
 @Service
 public class CategoriaService {
 	

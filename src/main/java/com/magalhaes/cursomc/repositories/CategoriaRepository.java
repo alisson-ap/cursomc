@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.magalhaes.cursomc.domain.Categoria;
 
+//Repositório Jpa que faz ações no banco de dados
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 

@@ -10,14 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.magalhaes.cursomc.domain.Categoria;
 import com.magalhaes.cursomc.services.CategoriaService;
 
-@RestController
-@RequestMapping(value = "/categorias")
+//Controladores Rest, a fase inicial de contato usuários ela usa os métodos do services
+
+@RestController // especificando que a classe é um Controlador REST 
+@RequestMapping(value = "/categorias")//Aqui criamos a rota para o Requeste
 public class CategoriaResource {
 	
-	@Autowired
+	@Autowired // Instânciando a classe sem ter que usar um construtor 
 	private CategoriaService service;
 	
-	@RequestMapping(value="/{id}",method = RequestMethod.GET)
+	@RequestMapping(value="/{id}",method = RequestMethod.GET)//Criando um GET que pega valor com base no ID
 	private ResponseEntity<?> find(@PathVariable Integer id) {
 		
 		Categoria obj = service.buscar(id);

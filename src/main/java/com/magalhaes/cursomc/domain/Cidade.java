@@ -23,8 +23,8 @@ public class Cidade implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	@ManyToOne
-	@JoinColumn(name="estado_id")
+	@ManyToOne //especificando que a cidade pode ter só um estado
+	@JoinColumn(name="estado_id")//Nome da coluna
 	private Estado estado;
 	
 	

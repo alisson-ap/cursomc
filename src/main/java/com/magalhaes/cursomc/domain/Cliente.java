@@ -17,25 +17,27 @@ import javax.persistence.OneToMany;
 
 import com.magalhaes.cursomc.domain.enums.TipoCliente;
 
-@Entity
+//.domain(Dominio) Aqui vai ter todas as classes que são consideradas entidades no banco de dados 
+
+@Entity //Informando que a classe é uma entedidade 
 public class Cliente implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id //Informando que Integer Id é o Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//Tornando o ID em autoIncrement
 	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
-	@OneToMany(mappedBy = "cliente")
+	@OneToMany(mappedBy = "cliente")//Aqui se faz um FK especificando que um cliente pode ter vários endereços com um relacionamento de um pra muitos e indica que ela já foi criada na classe cliente
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@ElementCollection
+	@ElementCollection //Set funciona como uma lista que não pode se repetir valores, e também há uma tabela especifica para telefone
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 
