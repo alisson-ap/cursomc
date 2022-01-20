@@ -20,31 +20,37 @@ import com.magalhaes.cursomc.domain.enums.TipoCliente;
 
 //.domain(Dominio) Aqui vai ter todas as classes que são consideradas entidades no banco de dados 
 
-@Entity //Informando que a classe é uma entedidade 
+@Entity // Informando que a classe é uma entedidade
 public class Cliente implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id //Informando que Integer Id é o Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)//Tornando o ID em autoIncrement
+	@Id // Informando que Integer Id é o Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // Tornando o ID em autoIncrement
 	private Integer id;
 	private String nome;
 	private String email;
 	private String cpfOuCnpj;
 	private Integer tipo;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy = "cliente")//Aqui se faz um FK especificando que um cliente pode ter vários endereços com um relacionamento de um pra muitos e indica que ela já foi criada na classe cliente
+	@OneToMany(mappedBy = "cliente") // Aqui se faz um FK especificando que um cliente pode ter vários endereços com
+										// um relacionamento de um pra muitos e indica que ela já foi criada na classe
+										// cliente
 	private List<Endereco> enderecos = new ArrayList<>();
-	
-	@ElementCollection //Set funciona como uma lista que não pode se repetir valores, e também há uma tabela especifica para telefone
+
+	@ElementCollection // Set funciona como uma lista que não pode se repetir valores, e também há uma
+						// tabela especifica para telefone
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+
 	public Cliente() {
-		
+
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
@@ -129,6 +135,12 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
 
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 
 }
