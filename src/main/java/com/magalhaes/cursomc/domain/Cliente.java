@@ -15,8 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.magalhaes.cursomc.domain.enums.TipoCliente;
 
 //.domain(Dominio) Aqui vai ter todas as classes que são consideradas entidades no banco de dados 
@@ -36,7 +35,7 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy = "cliente") // Aqui se faz um FK especificando que um cliente pode ter vários endereços com
 										// um relacionamento de um pra muitos e indica que ela já foi criada na classe
 										// cliente
@@ -47,7 +46,7 @@ public class Cliente implements Serializable {
 	@CollectionTable(name = "telefone")
 	private Set<String> telefones = new HashSet<>();
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
