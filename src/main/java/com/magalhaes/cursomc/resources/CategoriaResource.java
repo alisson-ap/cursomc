@@ -31,7 +31,7 @@ public class CategoriaResource {
 
 	}
 
-	@RequestMapping(method = RequestMethod.POST)// Método post simples no REST
+	@RequestMapping(method = RequestMethod.POST) // Método post simples no REST
 	public ResponseEntity<Void> insert(@RequestBody Categoria obj) {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -39,9 +39,17 @@ public class CategoriaResource {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> update(@RequestBody Categoria obj ,@PathVariable Integer id){
+	public ResponseEntity<Void> update(@RequestBody Categoria obj, @PathVariable Integer id) {
 		obj.setId(id);
 		obj = service.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<Void> delete(@RequestBody Categoria obj, @PathVariable Integer id) {
+		obj.setId(id);
+		service.delete(id);
+		return ResponseEntity.noContent().build();
+		
 	}
 }
