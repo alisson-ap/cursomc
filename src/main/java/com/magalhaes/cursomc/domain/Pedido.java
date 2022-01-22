@@ -33,7 +33,7 @@ public class Pedido implements Serializable {
 	private Date instante;
 
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") //É uma classe que contém herança
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido") //Cascade usados em relacionamentos 1 pra 1
 	private Pagamento pagamento;
 
 	

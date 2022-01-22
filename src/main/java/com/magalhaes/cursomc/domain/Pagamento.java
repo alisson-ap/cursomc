@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.magalhaes.cursomc.domain.enums.EstadoPagemento;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)//Classe com Herança
 public abstract class Pagamento implements Serializable {
 
 	/**
