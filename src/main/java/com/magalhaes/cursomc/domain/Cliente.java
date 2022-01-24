@@ -35,7 +35,6 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-	
 	@OneToMany(mappedBy = "cliente") // Aqui se faz um FK especificando que um cliente pode ter vários endereços com
 										// um relacionamento de um pra muitos e indica que ela já foi criada na classe
 										// cliente
@@ -99,6 +98,10 @@ public class Cliente implements Serializable {
 		return TipoCliente.toEnum(tipo);
 	}
 
+	public void setTipo(TipoCliente tipo) {
+		this.tipo = tipo.getCod();
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -114,10 +117,6 @@ public class Cliente implements Serializable {
 			return false;
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
-	}
-
-	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getCod();
 	}
 
 	public List<Endereco> getEnderecos() {
