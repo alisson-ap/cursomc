@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.magalhaes.cursomc.domain.Categoria;
+import com.magalhaes.cursomc.dto.CategoriaDTO;
 import com.magalhaes.cursomc.repositories.CategoriaRepository;
 import com.magalhaes.cursomc.services.exceptions.DateIntegrityViolationException;
 import com.magalhaes.cursomc.services.exceptions.ObjectNotFoundException;
@@ -58,4 +59,7 @@ public class CategoriaService {
 		return repo.findAll(pageRequest);
 	}
 
+	public Categoria fromDTO(CategoriaDTO objDTO) {
+		return new Categoria(objDTO.getId(),objDTO.getNome());
+	}
 }
