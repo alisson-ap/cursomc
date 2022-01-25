@@ -2,8 +2,12 @@ package com.magalhaes.cursomc.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.magalhaes.cursomc.domain.Cliente;
-import com.magalhaes.cursomc.domain.enums.TipoCliente;
 
 public class ClienteDTO implements Serializable {
 
@@ -12,10 +16,13 @@ public class ClienteDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	@NotEmpty
+	@Length(min=5, max=12, message= "O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
+	
+	@NotEmpty(message = "Preenchimento obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
-	private String cpfOuCnpj;
-	private TipoCliente tipo;
 
 	
 	public ClienteDTO() {
@@ -26,8 +33,7 @@ public class ClienteDTO implements Serializable {
 		id = cliente.getId();
 		nome = cliente.getNome();
 		email = cliente.getEmail();
-		cpfOuCnpj = cliente.getCpfOuCnpj();
-		setTipo(cliente.getTipo());
+	
 	}
 	
 	public Integer getId() {
@@ -54,21 +60,7 @@ public class ClienteDTO implements Serializable {
 		this.email = email;
 	}
 
-	public String getCpfOuCnpj() {
-		return cpfOuCnpj;
-	}
 
-	public void setCpfOuCnpj(String cpfOuCnpj) {
-		this.cpfOuCnpj = cpfOuCnpj;
-	}
-
-	public TipoCliente getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo;
-	}
 
 
 
