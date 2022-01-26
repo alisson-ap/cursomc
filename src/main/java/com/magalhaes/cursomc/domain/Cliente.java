@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -35,9 +36,7 @@ public class Cliente implements Serializable {
 	private String cpfOuCnpj;
 	private Integer tipo;
 
-	@OneToMany(mappedBy = "cliente") // Aqui se faz um FK especificando que um cliente pode ter vários endereços com
-										// um relacionamento de um pra muitos e indica que ela já foi criada na classe
-										// cliente
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL ) // Aqui se faz um FK especificando que um cliente pode ter vários endereços com um relacionamento de um pra muitos e indica que ela já foi criada na classe cliente
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection // Set funciona como uma lista que não pode se repetir valores, e também há uma
