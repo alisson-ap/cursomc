@@ -8,7 +8,9 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.magalhaes.cursomc.domain.Cliente;
+import com.magalhaes.cursomc.services.validation.ClienteUpdate;
 
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 
 	/**
@@ -16,8 +18,9 @@ public class ClienteDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer id;
+	
 	@NotEmpty
-	@Length(min=5, max=12, message= "O tamanho deve ser entre 5 e 120 caracteres")
+	@Length(min = 5, max = 12, message = "O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
 	
 	@NotEmpty(message = "Preenchimento obrigatório")
